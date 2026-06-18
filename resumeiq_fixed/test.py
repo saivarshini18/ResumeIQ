@@ -1,3 +1,13 @@
-from utils.gemini_llm import gemini_chat
+import os
+from google import genai
 
-print(gemini_chat("Tell me about Artificial Intelligence in 3 lines"))
+client = genai.Client(
+    api_key=os.getenv("GEMINI_API_KEY")
+)
+
+response = client.models.generate_content(
+    model="gemini-2.5-flash",
+    contents="Hello"
+)
+
+print(response.text)
